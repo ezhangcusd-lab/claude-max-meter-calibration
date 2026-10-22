@@ -52,16 +52,16 @@
 {"t": 1792597872.951, "event": "file-cmd", "cmd": "probe 7 0.1", "result": "probe step 7 (sonnet-5-5 output): 1 calls, 0.01M tok, ~0.105 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792598404.953, "event": "probe", "step": 6, "calls": 1, "tokens": 8048, "predictedPts": 0.1047668}
 {"t": 1792598404.954, "event": "file-cmd", "cmd": "probe 7 0.1", "result": "probe step 7 (sonnet-5-5 output): 1 calls, 0.01M tok, ~0.105 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792599141.039, "event": "tick", "pct": 13, "source": "Eric saw card"}
+{"t": 1792599141.039, "event": "tick", "pct": 13, "source": "operator saw card"}
 {"t": 1792599141.042, "event": "file-cmd", "cmd": "tick 13", "result": "tick 13% logged at 9:12:21 AM"}
-{"t": 1792599171.063, "event": "tick", "pct": 14, "source": "Eric saw card"}
+{"t": 1792599171.063, "event": "tick", "pct": 14, "source": "operator saw card"}
 {"t": 1792599171.065, "event": "file-cmd", "cmd": "tick 14", "result": "tick 14% logged at 9:12:51 AM"}
 {"t": 1792599341.197, "event": "file-cmd", "cmd": "start 10 only 18", "result": "Single step 10 started: stops at predicted +18 pts (no gap, no next step). Then probe to the tick."}
 {"t": 1792599790.495, "event": "probe", "step": 9, "calls": 26, "tokens": 1630371, "predictedPts": 0.306509748}
 {"t": 1792599790.499, "event": "file-cmd", "cmd": "probe 10 0.3", "result": "probe step 10 (haiku-5-5 uncached): 26 calls, 1.63M tok, ~0.307 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792599828.98, "event": "probe", "step": 9, "calls": 26, "tokens": 1631934, "predictedPts": 0.306803592}
 {"t": 1792599828.982, "event": "file-cmd", "cmd": "probe 10 0.3", "result": "probe step 10 (haiku-5-5 uncached): 26 calls, 1.63M tok, ~0.307 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792599851.537, "event": "tick", "pct": 21, "source": "Eric saw card"}
+{"t": 1792599851.537, "event": "tick", "pct": 21, "source": "operator saw card"}
 {"t": 1792599851.539, "event": "file-cmd", "cmd": "tick 21", "result": "tick 21% logged at 9:24:11 AM"}
 {"t": 1792599861.553, "event": "file-cmd", "cmd": "start 10 only 18", "result": "Single step 10 started: stops at predicted +18 pts (no gap, no next step). Then probe to the tick."}
 {"t": 1792599961.611, "event": "step-end", "step": 9, "model": "claude-haiku-5-5", "kind": "uncached", "only": true, "estPts": 21.97591761999998, "tokens": 93118295, "meter0": 20, "meter1": 21, "predicted": 38.27042974399998, "carry": 0, "target": 18}
@@ -77,7 +77,7 @@
 {"t": 1792600486.973, "event": "file-cmd", "cmd": "probe 10 0.1", "result": "probe step 10 (haiku-5-5 uncached): 9 calls, 0.56M tok, ~0.106 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792600517.541, "event": "probe", "step": 9, "calls": 9, "tokens": 564523, "predictedPts": 0.10613032400000001}
 {"t": 1792600517.545, "event": "file-cmd", "cmd": "probe 10 0.1", "result": "probe step 10 (haiku-5-5 uncached): 9 calls, 0.56M tok, ~0.106 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792600532.038, "event": "tick", "pct": 37, "source": "Eric saw card"}
+{"t": 1792600532.038, "event": "tick", "pct": 37, "source": "operator saw card"}
 {"t": 1792600532.04, "event": "file-cmd", "cmd": "tick 37", "result": "tick 37% logged at 9:35:32 AM"}
 {"t": 1792600542.047, "event": "file-cmd", "cmd": "start 11 only 18", "result": "Single step 11 started: stops at predicted +18 pts (no gap, no next step). Then probe to the tick."}
 {"t": 1792600642.109, "event": "step-end", "step": 10, "model": "claude-haiku-5-5", "kind": "write", "only": true, "estPts": 23.789793973000037, "tokens": 80632143, "meter0": 36, "meter1": 43, "predicted": 54.414326775999996, "carry": 0, "target": 18}
@@ -89,7 +89,7 @@
 {"t": 1792601748.811, "event": "file-cmd", "cmd": "probe 11 0.1", "result": "probe step 11 (haiku-5-5 write): 7 calls, 0.44M tok, ~0.109 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792601988.146, "event": "probe", "step": 10, "calls": 7, "tokens": 438273, "predictedPts": 0.108705052}
 {"t": 1792601988.151, "event": "file-cmd", "cmd": "probe 11 0.1", "result": "probe step 11 (haiku-5-5 write): 7 calls, 0.44M tok, ~0.109 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792602153.352, "event": "tick", "pct": 54, "source": "Eric saw card"}
+{"t": 1792602153.352, "event": "tick", "pct": 54, "source": "operator saw card"}
 {"t": 1792602153.358, "event": "file-cmd", "cmd": "tick 54", "result": "tick 54% logged at 10:02:33 AM"}
 {"t": 1792602163.375, "event": "file-cmd", "cmd": "start 8 only 18", "result": "Single step 8 started: stops at predicted +18 pts (no gap, no next step). Then probe to the tick."}
 {"t": 1792602253.407, "event": "step-end", "step": 7, "model": "claude-opus-5-5", "kind": "uncached", "only": true, "estPts": 2140.130061920002, "tokens": 226708148, "meter0": 54, "meter1": 54, "predicted": 72.36542008800002, "carry": 0, "target": 18}
@@ -103,7 +103,7 @@
 {"t": 1792602867.531, "event": "file-cmd", "cmd": "probe 8 0.1", "result": "probe step 8 (opus-5-5 uncached): 10 calls, 1.25M tok, ~0.101 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792602888.065, "event": "probe", "step": 7, "calls": 10, "tokens": 1254645, "predictedPts": 0.10170184500000001}
 {"t": 1792602888.072, "event": "file-cmd", "cmd": "probe 8 0.1", "result": "probe step 8 (opus-5-5 uncached): 10 calls, 1.25M tok, ~0.102 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792603104.118, "event": "tick", "pct": 73, "source": "Eric saw card"}
+{"t": 1792603104.118, "event": "tick", "pct": 73, "source": "operator saw card"}
 {"t": 1792603104.122, "event": "file-cmd", "cmd": "tick 73", "result": "tick 73% logged at 10:18:24 AM"}
 {"t": 1792603114.141, "event": "file-cmd", "cmd": "start 9 only 18", "result": "Single step 9 started: stops at predicted +18 pts (no gap, no next step). Then probe to the tick."}
 {"t": 1792604325.058, "event": "step-end", "step": 8, "model": "claude-opus-5-5", "kind": "output", "only": true, "estPts": 45.641644799999895, "tokens": 965760, "meter0": 73, "meter1": 90, "predicted": 91.216890648, "carry": 0, "target": 18}
@@ -121,13 +121,13 @@
 {"t": 1792607627.892, "event": "file-cmd", "cmd": "probe 9 0.1", "result": "probe step 9 (opus-5-5 output): 1 calls, 0.01M tok, ~0.152 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792608364.872, "event": "probe", "step": 8, "calls": 1, "tokens": 8048, "predictedPts": 0.15211133099999996}
 {"t": 1792608364.886, "event": "file-cmd", "cmd": "probe 9 0.1", "result": "probe step 9 (opus-5-5 output): 1 calls, 0.01M tok, ~0.152 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792609388.934, "event": "tick", "pct": 93, "source": "Eric saw card"}
+{"t": 1792609388.934, "event": "tick", "pct": 93, "source": "operator saw card"}
 {"t": 1792609388.945, "event": "file-cmd", "cmd": "tick 93", "result": "tick 93% logged at 12:03:08 PM"}
 {"t": 1792612872.678, "event": "probe", "step": 1, "calls": 165, "tokens": 18574888, "predictedPts": 0.30000428880000135}
 {"t": 1792612872.691, "event": "file-cmd", "cmd": "probe 2 0.3", "result": "probe step 2 (opus-5-5 read): 165 calls, 18.57M tok, ~0.300 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792612981.933, "event": "probe", "step": 1, "calls": 574, "tokens": 72040444, "predictedPts": 0.3001732244000009}
 {"t": 1792612981.945, "event": "file-cmd", "cmd": "probe 2 0.3", "result": "probe step 2 (opus-5-5 read): 574 calls, 72.04M tok, ~0.300 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792613081.744, "event": "tick", "pct": 3, "source": "Eric saw card"}
+{"t": 1792613081.744, "event": "tick", "pct": 3, "source": "operator saw card"}
 {"t": 1792613081.755, "event": "file-cmd", "cmd": "tick 3", "result": "tick 3% logged at 1:04:41 PM"}
 {"t": 1792613091.77, "event": "file-cmd", "cmd": "start 2 only 13", "result": "Single step 2 started: stops at predicted +13 pts (no gap, no next step). Then probe to the tick."}
 {"t": 1792613737.249, "event": "step-end", "step": 1, "model": "claude-opus-5-5", "kind": "read", "only": true, "estPts": 1051.944150448021, "tokens": 2222585754, "meter0": 3, "meter1": 15, "predicted": 16.014184687600025, "carry": 0, "target": 13}
@@ -143,7 +143,7 @@
 {"t": 1792614186.17, "event": "file-cmd", "cmd": "probe 2 0.1", "result": "probe step 2 (opus-5-5 read): 8 calls, 0.00M tok, ~0.104 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792614255.713, "event": "probe", "step": 1, "calls": 8, "tokens": 0, "predictedPts": 0.10471485999999999}
 {"t": 1792614255.723, "event": "file-cmd", "cmd": "probe 2 0.1", "result": "probe step 2 (opus-5-5 read): 8 calls, 0.00M tok, ~0.105 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792614292.569, "event": "tick", "pct": 18, "source": "Eric saw card"}
+{"t": 1792614292.569, "event": "tick", "pct": 18, "source": "operator saw card"}
 {"t": 1792614292.572, "event": "file-cmd", "cmd": "tick 18", "result": "tick 18% logged at 1:24:52 PM"}
 {"t": 1792614464.99, "event": "probe", "step": 3, "calls": 996, "tokens": 62566595, "predictedPts": 0.3001401335000047}
 {"t": 1792614464.996, "event": "file-cmd", "cmd": "probe 4 0.3", "result": "probe step 4 (haiku-5-5 read): 996 calls, 62.57M tok, ~0.300 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
@@ -151,7 +151,7 @@
 {"t": 1792614633.139, "event": "file-cmd", "cmd": "probe 4 0.3", "result": "probe step 4 (haiku-5-5 read): 1050 calls, 66.03M tok, ~0.300 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792614939.812, "event": "probe", "step": 3, "calls": 1050, "tokens": 66025050, "predictedPts": 0.30027112500000464}
 {"t": 1792614939.826, "event": "file-cmd", "cmd": "probe 4 0.3", "result": "probe step 4 (haiku-5-5 read): 1050 calls, 66.03M tok, ~0.300 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792614963.082, "event": "tick", "pct": 19, "source": "Eric saw card"}
+{"t": 1792614963.082, "event": "tick", "pct": 19, "source": "operator saw card"}
 {"t": 1792614963.087, "event": "file-cmd", "cmd": "tick 19", "result": "tick 19% logged at 1:36:03 PM"}
 {"t": 1792614973.093, "event": "file-cmd", "cmd": "start 4 only 16", "result": "Single step 4 started: stops at predicted +16 pts (no gap, no next step). Then probe to the tick."}
 {"t": 1792617255.302, "event": "step-end", "step": 3, "model": "claude-haiku-5-5", "kind": "read", "only": true, "estPts": 94.08344748867769, "tokens": 3976468678, "meter0": 19, "meter1": 34, "predicted": 35.00976889749993, "carry": 0, "target": 16}
@@ -171,7 +171,7 @@
 {"t": 1792618779.348, "event": "file-cmd", "cmd": "probe 4 0.1", "result": "probe step 4 (haiku-5-5 read): 350 calls, 22.01M tok, ~0.100 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792618901.839, "event": "probe", "step": 3, "calls": 350, "tokens": 22008350, "predictedPts": 0.10009037499999954}
 {"t": 1792618901.844, "event": "file-cmd", "cmd": "probe 4 0.1", "result": "probe step 4 (haiku-5-5 read): 350 calls, 22.01M tok, ~0.100 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792618976.643, "event": "tick", "pct": 36, "source": "Eric saw card"}
+{"t": 1792618976.643, "event": "tick", "pct": 36, "source": "operator saw card"}
 {"t": 1792618976.644, "event": "file-cmd", "cmd": "tick 36", "result": "tick 36% logged at 2:42:56 PM"}
 {"t": 1792619282.653, "event": "probe", "step": 2, "calls": 31, "tokens": 249488, "predictedPts": 0.30217770799999977}
 {"t": 1792619282.656, "event": "file-cmd", "cmd": "probe 3 0.3", "result": "probe step 3 (haiku-5-5 output): 31 calls, 0.25M tok, ~0.302 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
@@ -183,7 +183,7 @@
 {"t": 1792620124.683, "event": "file-cmd", "cmd": "probe 3 0.3", "result": "probe step 3 (haiku-5-5 output): 31 calls, 0.25M tok, ~0.302 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792620743.591, "event": "probe", "step": 2, "calls": 31, "tokens": 249488, "predictedPts": 0.30217770799999977}
 {"t": 1792620743.592, "event": "file-cmd", "cmd": "probe 3 0.3", "result": "probe step 3 (haiku-5-5 output): 31 calls, 0.25M tok, ~0.302 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792620888.117, "event": "tick", "pct": 37, "source": "Eric saw card"}
+{"t": 1792620888.117, "event": "tick", "pct": 37, "source": "operator saw card"}
 {"t": 1792620888.118, "event": "file-cmd", "cmd": "tick 37", "result": "tick 37% logged at 3:14:48 PM"}
 {"t": 1792620898.129, "event": "file-cmd", "cmd": "start 3 only 16", "result": "Single step 3 started: stops at predicted +16 pts (no gap, no next step). Then probe to the tick."}
 {"t": 1792623795.55, "event": "step-end", "step": 2, "model": "claude-haiku-5-5", "kind": "output", "only": true, "estPts": 20.743613411999267, "tokens": 17557077, "meter0": 37, "meter1": 53, "predicted": 53, "carry": 0, "target": 16}
@@ -207,13 +207,13 @@
 {"t": 1792631600.44, "event": "file-cmd", "cmd": "probe 2 0.3", "result": "probe step 2 (opus-5-5 read): 23 calls, 0.00M tok, ~0.300 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792631645.495, "event": "probe", "step": 1, "calls": 164, "tokens": 18449382, "predictedPts": 0.30032001820000115}
 {"t": 1792631645.496, "event": "file-cmd", "cmd": "probe 2 0.3", "result": "probe step 2 (opus-5-5 read): 164 calls, 18.45M tok, ~0.300 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792631716.211, "event": "tick", "pct": 2, "source": "Eric saw card"}
+{"t": 1792631716.211, "event": "tick", "pct": 2, "source": "operator saw card"}
 {"t": 1792631716.216, "event": "file-cmd", "cmd": "tick 2", "result": "tick 2% logged at 6:15:16 PM"}
 {"t": 1792631726.221, "event": "file-cmd", "cmd": "start 2 only 10", "result": "Single step 2 started: stops at predicted +10 pts (no gap, no next step). Then probe to the tick."}
 {"t": 1792632196.439, "event": "step-end", "step": 1, "model": "claude-opus-5-5", "kind": "read", "only": true, "estPts": 871.2679000959653, "tokens": 1840922008, "meter0": 2, "meter1": 11, "predicted": 12.017519046600029, "carry": 0, "target": 10}
 {"t": 1792632519.864, "event": "probe", "step": 1, "calls": 8, "tokens": 0, "predictedPts": 0.10450695999999998}
 {"t": 1792632519.869, "event": "file-cmd", "cmd": "probe 2 0.1", "result": "probe step 2 (opus-5-5 read): 8 calls, 0.00M tok, ~0.105 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792632536.66, "event": "tick", "pct": 12, "source": "Eric saw card"}
+{"t": 1792632536.66, "event": "tick", "pct": 12, "source": "operator saw card"}
 {"t": 1792632536.664, "event": "file-cmd", "cmd": "tick 12", "result": "tick 12% logged at 6:28:56 PM"}
 {"t": 1792632562.23, "event": "probe", "step": 0, "calls": 24, "tokens": 3008425, "predictedPts": 0.312971321}
 {"t": 1792632562.233, "event": "file-cmd", "cmd": "probe 1 0.3", "result": "probe step 1 (opus-5-5 write): 24 calls, 3.01M tok, ~0.313 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
@@ -221,6 +221,6 @@
 {"t": 1792632802.743, "event": "file-cmd", "cmd": "probe 1 0.3", "result": "probe step 1 (opus-5-5 write): 24 calls, 3.01M tok, ~0.313 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
 {"t": 1792632832.479, "event": "probe", "step": 0, "calls": 24, "tokens": 3008921, "predictedPts": 0.313023391}
 {"t": 1792632832.482, "event": "file-cmd", "cmd": "probe 1 0.3", "result": "probe step 1 (opus-5-5 write): 24 calls, 3.01M tok, ~0.313 pts. Refresh the card: no tick -> probe again; tick -> /claude-calibrate tick <new %>"}
-{"t": 1792632966.919, "event": "tick", "pct": 13, "source": "Eric saw card"}
+{"t": 1792632966.919, "event": "tick", "pct": 13, "source": "operator saw card"}
 {"t": 1792632966.921, "event": "file-cmd", "cmd": "tick 13", "result": "tick 13% logged at 6:36:06 PM"}
 {"t": 1792632976.922, "event": "file-cmd", "cmd": "start 1 only 10", "result": "Single step 1 started: stops at predicted +10 pts (no gap, no next step). Then probe to the tick."}
