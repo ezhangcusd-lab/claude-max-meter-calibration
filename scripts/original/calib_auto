@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+"""calib_auto [SONNET_LEFT] [BURN] — run everything that is left, in one go (2026-10-21, v8 mod).
+
+  1. Sonnet output remainder: SONNET_LEFT pts (default 13 = 47 target - 34 burned before the 08:00 reset; the
+     restart lost the carry, so the remainder is passed explicitly). No start lock (fresh window).
+  2. Haiku uncached (10), Haiku write (11), Opus uncached (8), Opus output (9): BURN pts each (default 18).
+After every burn: 5-min late-billing wait, then probes of that step until you answer y (ticked); that end tick is
+also the next cell's start edge, so only the first edge-locked cell needs a start probe loop.
+If the run dies mid-burn (heartbeat stale, e.g. an app restart), it waits for late billing, measures what the card
+already moved, and relaunches only the lost remainder — the burn total stays on target.
+State: claude_estimator/calib_auto_state.json (rerun calib_auto to resume after the last finished cell).
+"""
+import importlib.machinery, json, os, sys, time
+
+E = importlib.machinery.SourceFileLoader('calib_edge', os.path.join(os.path.dirname(os.path.realpath(__file__)), 'calib_edge')).load_module()
+ST = f'{E.D}/calib_auto_state.json'
+
+
+def beat_age():
+    try: return time.time() - int(open(f'{E.D}/calib_heartbeat.txt').read()[:10])
+    except (OSError, ValueError): return 1e9
+
+
+def wait(s, label):
+    for left in range(s, 0, -10):
+        pct, _ = E.card(); print(f'\r  {label} {left}s, card {pct}%  ', end='', flush=True); time.sleep(10)
+    print()
+
+
+def burn(step, target):
+    """Burn `target` card pts on step; relaunch only the lost remainder if the run dies."""
+    m0, _ = E.card(); left = target
+    while left > 0.5:
+        t0 = time.time() - 1
+        print(f'  start {step} only {left:g}: ' + E.send(f'start {step} only {left:g}'))
+        while True:
+            if any(e.get('event') == 'step-end' and e.get('only') for e in E.events(t0)): return
+            if time.time() - t0 > 90 and beat_age() > 60:
+                print(f'\n  run died (heartbeat {beat_age():.0f}s old): waiting for late billing before measuring')
+                wait(300, 'late-billing wait')
+                pct, _ = E.card(); left = target - (pct - m0)
+                print(f'  card moved {pct - m0} of {target}: relaunching the remaining {left:g}')
+                break
+            pct, _ = E.card(); print(f'\r  burning step {step}... card {pct}% (+{pct - m0})  {int(time.time() - t0) // 60} min', end='', flush=True)
+            time.sleep(20)
+
+
+def main():
+    sonnet = float(sys.argv[1]) if len(sys.argv) > 1 else 13
+    b = float(sys.argv[2]) if len(sys.argv) > 2 else 18
+    queue = [(7, sonnet)] + [(s, b) for s in (10, 11, 8, 9)]
+    names = {**E.NAMES, 7: 'Sonnet output (remainder)'}
+    try: st = json.load(open(ST))
+    except (OSError, ValueError): st = {'done': [], 'tick': None}
+    if beat_age() < 60: sys.exit('a calibration run is alive (heartbeat fresh); wait for it to end')
+    for step, tgt in queue:
+        if step in st['done']: print(f'step {step} ({names[step]}) already done, skipping'); continue
+        print(f'\n== step {step} ({names[step]}): +{tgt:g} pts')
+        if step != 7 and st['tick'] is None:
+            st['tick'] = E.lock(step, '0.3', 'start edge'); json.dump(st, open(ST, 'w'))
+        start = st['tick']
+        burn(step, tgt)
+        wait(300, 'late-billing wait')
+        st['tick'] = E.lock(step, '0.1', 'end edge')
+        st['done'].append(step); json.dump(st, open(ST, 'w'))
+        print(f'DONE step {step} ({names[step]}): ' + (f'ticks {start}% -> {st["tick"]}% = {st["tick"] - start} locked pts' if start is not None else f'end tick {st["tick"]}%'))
+    print('\nALL DONE. Refit next.')
+
+
+if __name__ == '__main__':
+    try: main()
+    except KeyboardInterrupt: sys.exit('\npaused (state saved; a running burn continues: /claude-calibrate stop in the app stops it). Rerun calib_auto to resume.')

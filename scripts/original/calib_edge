@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+"""calib_edge STEP TARGET [START_PROBE] [END_PROBE] — semi-manual edge-lock of one calibration cell (2026-10-21, v8 mod).
+
+  1. probe START_PROBE pts (default 0.3) -> you answer: ticked? y / n (probe again) / Enter (refresh card %)
+  2. on y: logs the tick, then auto-starts 'start STEP only TARGET' (the large burn) and waits for it to end
+  3. waits 5 min for late billing, then probes END_PROBE pts (default 0.1) with the same y/n loop
+  4. on y: logs the end tick and prints the locked points (end tick - start tick)
+Talks to the usage-both mod through calib_start.txt (the mod reads it every 10 s). Plain job-control code, no model.
+Steps: 8 Opus uncached, 9 Opus output, 10 Haiku uncached, 11 Haiku 5m write. Ctrl-C to abort (a running burn keeps going:
+send '/claude-calibrate stop' in the app to stop it).
+"""
+import glob, json, os, sys, time
+
+D = os.environ.get('CALIB_DIR') or os.path.expanduser('~/Agentic_Work/usage/claude_estimator')   # CALIB_DIR: dry-run testing
+F = f'{D}/calib_start.txt'
+NAMES = {8: 'Opus uncached', 9: 'Opus output', 10: 'Haiku uncached', 11: 'Haiku 5m write'}
+
+
+def card():
+    with open(f'{D}/../claude_live_meter.jsonl', 'rb') as f:
+        f.seek(max(0, os.path.getsize(f.name) - 4000)); last = f.read().decode(errors='ignore').strip().split('\n')[-1]
+    d = json.loads(last)
+    fh = next(w['percentUsed'] for w in d['windows'] if w['kind'] == 'five_hour')
+    return fh, int(time.time() - d['t'])
+
+
+def events(since):
+    out = []
+    for p in sorted(glob.glob(f'{D}/calib_log*.jsonl'), key=os.path.getmtime)[-2:]:
+        with open(p, 'rb') as f:
+            off = max(0, os.path.getsize(p) - 200000); f.seek(off)
+            lines = f.read().decode(errors='ignore').split('\n')[1 if off else 0:]   # drop the partial first line only after a seek
+        for l in lines:
+            if '"event"' in l:
+                try: e = json.loads(l)
+                except ValueError: continue
+                if e.get('t', 0) >= since: out.append(e)
+    return out
+
+
+def send(cmd, timeout=900):
+    """Write one command for the mod and return its logged result."""
+    while open(F).read().strip(): time.sleep(2)          # another command still pending
+    t0 = time.time() - 1
+    with open(F, 'w') as f: f.write(cmd + '\n')
+    while time.time() - t0 < timeout:
+        for e in events(t0):
+            if e.get('event') == 'file-cmd' and e.get('cmd') == cmd: return e.get('result', '')
+        time.sleep(3)
+    sys.exit(f'no response to "{cmd}" after {timeout}s: is the Claude app open with a Claude Code session on the v8 mod?')
+
+
+def lock(step, pts, label):
+    """Probe until the author says the card ticked; log the tick and return its %."""
+    while True:
+        print(f'  probe {pts} pts ...', flush=True); print('  ' + send(f'probe {step} {pts}'))
+        while True:
+            pct, age = card()
+            a = input(f'  [{label}] card 5h {pct}% (read {age}s ago). Ticked? y / n=probe again / Enter=refresh: ').strip().lower()
+            if a == 'y':
+                while True:   # 2026-10-21: Enter or y keeps the shown %, a number overrides it
+                    v = input(f'  tick % [{pct}] (Enter/y = {pct}): ').strip().lower()
+                    if v in ('', 'y'): break
+                    if v.isdigit(): pct = int(v); break
+                print('  ' + send(f'tick {pct}')); return pct
+            if a == 'n': break
+
+
+def main():
+    if len(sys.argv) < 3: sys.exit(__doc__)
+    step, target = int(sys.argv[1]), sys.argv[2]
+    p0 = sys.argv[3] if len(sys.argv) > 3 else '0.3'; p1 = sys.argv[4] if len(sys.argv) > 4 else '0.1'
+    beat = time.time() - int(open(f'{D}/calib_heartbeat.txt').read()[:10])
+    if beat < 60: sys.exit('a calibration run is alive (heartbeat fresh); wait for it to end')
+    print(f'step {step} ({NAMES.get(step, "?")}): edge-lock, burn +{target} pts between ticks')
+    t_start = lock(step, p0, 'start edge')
+    t0 = time.time() - 1
+    print(f'  start {step} only {target}: ' + send(f'start {step} only {target}'))
+    while not any(e.get('event') == 'step-end' and e.get('only') for e in events(t0)):
+        pct, _ = card(); print(f'\r  burning... card {pct}%  {int(time.time() - t0) // 60} min', end='', flush=True); time.sleep(20)
+    end = next(e for e in events(t0) if e.get('event') == 'step-end' and e.get('only'))
+    print(f'\n  burn done: card {end.get("meter0")} -> {end.get("meter1")}, predicted {end.get("predicted")}')
+    for s in range(300, 0, -10):
+        pct, _ = card(); print(f'\r  late-billing wait {s}s, card {pct}%  ', end='', flush=True); time.sleep(10)
+    print()
+    t_end = lock(step, p1, 'end edge')
+    print(f'DONE step {step} ({NAMES.get(step, "?")}): ticks {t_start}% -> {t_end}% = {t_end - t_start} locked pts')
+
+
+if __name__ == '__main__':
+    try: main()
+    except KeyboardInterrupt: sys.exit('\naborted (a running burn continues; /claude-calibrate stop in the app stops it)')
